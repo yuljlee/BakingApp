@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/text_margin"
+        android:paddingLeft="@dimen/text_margin"
+        android:paddingBottom="8dp"
+
+        android:layout_gravity="center_vertical"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:typeface="serif"
+        android:text="Recipe Ingredients"
+        android:id="@+id/ingredient_header_textview"/>
+
+</LinearLayout>
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:card="http://schemas.android.com/apk/res-auto"-->
+    <!--android:orientation="vertical"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<android.support.v7.widget.CardView-->
+        <!--android:id="@+id/ingredient_cardview"-->
+        <!--card:cardCornerRadius="5dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="70dp"-->
+
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginRight="8dp"-->
+        <!--android:focusable="true">-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="vertical"-->
+            <!--android:background="#ff0000">-->
+            <!--<TextView-->
+                <!--android:id="@+id/ingredient_header_textview"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center"-->
+                <!--android:padding="0dp"-->
+                <!--android:textSize="20dp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:typeface="serif"-->
+                <!--android:textColor="#0000CD"-->
+                <!--android:background="#ff0fff"-->
+                <!--android:text="@string/app_name"/>-->
+        <!--</RelativeLayout>-->
+    <!--</android.support.v7.widget.CardView>-->
+
+<!--</LinearLayout>-->
+
