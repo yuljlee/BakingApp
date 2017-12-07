@@ -36,13 +36,17 @@ public class RecipeDetailActivityFragment extends Fragment implements RecipeDeta
     public RecipeDetailActivityFragment() {
     }
 
+    public ArrayList<com.nanodegree.yj.bakingapp.Step> getStepList() {
+        return mStepArrayList;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_recipe_detail, container, false);
 
-        mRecipe = getActivity().getIntent().getParcelableExtra("recipe");
+        //mRecipe = getActivity().getIntent().getParcelableExtra("recipe");
 
         //Recipe recipe = (Recipe) bundle.getParcelable("recipe");
 
@@ -78,16 +82,26 @@ public class RecipeDetailActivityFragment extends Fragment implements RecipeDeta
     public void onClick(int stepId) {
         //Toast.makeText(getActivity(), "show me", Toast.LENGTH_LONG).show();
 
-        Context context = getActivity();
-        //Toast.makeText(context, "onClicked ---> ", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(context, RecipeStepActivity.class);
+        //Context context = getActivity();
+        if (getActivity().findViewById(R.id.step_linearlayout) == null) { // phone mode
+            //Toast.makeText(context, "onClicked ---> ", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getActivity(), RecipeStepActivity.class);
 
-        //Bundle bundle = new Bundle();
-        //bundle.putParcelable("recipe", recipe);
-        intent.putParcelableArrayListExtra("stepList", mStepArrayList);
-        intent.putExtra("stepId", stepId);
-        //Log.v(TAG, "step onClick --> " + Integer.toString(stepId));
+            intent.putParcelableArrayListExtra("stepList", mStepArrayList);
+            intent.putExtra("stepId", stepId);
 
-        startActivity(intent);
+            startActivity(intent);
+        } else {
+            Bundle bundle = new Bundle();
+            bundle.putParcelableArrayList("stepList", mStepArrayList);
+            bundle.putInt("stepId", stepId);
+            Fragment fragment = new RecipeStepActivityFragment();
+            fragment.setArguments(bundle);
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.step_container, fragment)
+                    .commit();
+        }
+
     }
 }

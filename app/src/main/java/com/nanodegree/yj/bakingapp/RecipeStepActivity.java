@@ -33,7 +33,6 @@ public class RecipeStepActivity extends AppCompatActivity {
         }
 
         if (savedInstanceState == null) {
-
             Fragment fragment = new RecipeStepActivityFragment();
 
             FragmentManager fragmentManager = getSupportFragmentManager();

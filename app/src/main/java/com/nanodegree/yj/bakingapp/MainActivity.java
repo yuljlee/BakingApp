@@ -24,12 +24,20 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+//    private static boolean mTwoPane = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+//        if (findViewById(R.id.step_linearlayout) != null) {
+//            mTwoPane = true;
+//        } else {
+//            mTwoPane = false;
+//        }
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
     }
+
+//    public static boolean isTablet() {
+//        return mTwoPane;
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

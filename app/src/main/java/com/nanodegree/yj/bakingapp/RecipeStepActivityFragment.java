@@ -62,41 +62,70 @@ public class RecipeStepActivityFragment extends Fragment implements Button.OnCli
 
         View rootView = inflater.inflate(R.layout.fragment_recipe_step, container, false);
 
-        if (savedInstanceState != null) {
-            mStepList = savedInstanceState.getParcelableArrayList(STEP_LIST);
-            mStepId = savedInstanceState.getInt(STEP_ID, 0);
+        mPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.player_view);
 
-            Log.v(TAG, "step_id from savedInstanceState --> " + Integer.toString(mStepId));
-        } else {
-            mStepList = getActivity().getIntent().getParcelableArrayListExtra("stepList");
-            mStepId = getActivity().getIntent().getExtras().getInt("stepId");
+        if (getActivity().findViewById(R.id.step_linearlayout) == null) { // phone mode
 
-            Log.v(TAG, "step_id first --> " + Integer.toString(mStepId));
-        }
+            if (savedInstanceState != null) {
+                mStepList = savedInstanceState.getParcelableArrayList(STEP_LIST);
+                mStepId = savedInstanceState.getInt(STEP_ID, 0);
 
-        String videoUrl = mStepList.get(mStepId).getVideoURL();
+                Log.v(TAG, "step_id from savedInstanceState --> " + Integer.toString(mStepId));
+            } else {
+                mStepList = getActivity().getIntent().getParcelableArrayListExtra("stepList");
+                mStepId = getActivity().getIntent().getExtras().getInt("stepId");
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            mDescription = (TextView) rootView.findViewById(R.id.description_textview);
-            mPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.player_view);
-            mPrevButton = (Button) rootView.findViewById(R.id.prev_button);
-            mNextButton = (Button) rootView.findViewById(R.id.next_button);
-
-            showRecipe(mStepId);
-            //showRecipeVideo(mStepId);
-            setButton();
-
-            if (!videoUrl.isEmpty() && videoUrl != null) {
-                initializePlayer(Uri.parse(mStepList.get(mStepId).getVideoURL()));
+                Log.v(TAG, "step_id first --> " + Integer.toString(mStepId));
             }
+
+            String videoUrl = mStepList.get(mStepId).getVideoURL();
+
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                mDescription = (TextView) rootView.findViewById(R.id.description_textview);
+                //mPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.player_view);
+                mPrevButton = (Button) rootView.findViewById(R.id.prev_button);
+                mNextButton = (Button) rootView.findViewById(R.id.next_button);
+
+                showRecipe(mStepId);
+                //showRecipeVideo(mStepId);
+                setButton();
+
+                if (!videoUrl.isEmpty() && videoUrl != null) {
+                    initializePlayer(Uri.parse(mStepList.get(mStepId).getVideoURL()));
+                }
 //        // previous button
-            //Button button_prev = (Button) rootView.findViewById(R.id.previous_button);
-            mPrevButton.setOnClickListener(this);
+                //Button button_prev = (Button) rootView.findViewById(R.id.previous_button);
+                mPrevButton.setOnClickListener(this);
 //        // next button
-            //Button button_next = (Button) rootView.findViewById(R.id.next_button);
-            mNextButton.setOnClickListener(this);
-        } else { // landscape mode
-            mPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.player_view);
+                //Button button_next = (Button) rootView.findViewById(R.id.next_button);
+                mNextButton.setOnClickListener(this);
+            } else { // landscape mode
+                //mPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.player_view);
+                if (!videoUrl.isEmpty() && videoUrl != null) {
+                    initializePlayer(Uri.parse(mStepList.get(mStepId).getVideoURL()));
+                }
+            }
+        } else { // table landscape
+            if (savedInstanceState != null) {
+                mStepList = savedInstanceState.getParcelableArrayList(STEP_LIST);
+                mStepId = savedInstanceState.getInt(STEP_ID, 0);
+
+                Log.v(TAG, "step_id from savedInstanceState --> " + Integer.toString(mStepId));
+            } else {
+                //mStepList = getActivity().getIntent().getParcelableArrayListExtra("stepList");
+                //mStepId = getActivity().getIntent().getExtras().getInt("stepId");
+
+                if (getArguments() != null) {
+                    mStepList = getArguments().getParcelableArrayList("stepList");
+                    mStepId = getArguments().getInt("stepId");
+                }
+
+                Log.v(TAG, "step_id first --> " + Integer.toString(mStepId));
+            }
+
+            String videoUrl = mStepList.get(mStepId).getVideoURL();
+
+            //mPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.player_view);
             if (!videoUrl.isEmpty() && videoUrl != null) {
                 initializePlayer(Uri.parse(mStepList.get(mStepId).getVideoURL()));
             }
@@ -124,7 +153,31 @@ public class RecipeStepActivityFragment extends Fragment implements Button.OnCli
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
+//        if (getActivity().findViewById(R.id.step_linearlayout) != null) { // table landscape
+//            if (savedInstanceState != null) {
+//                mStepList = savedInstanceState.getParcelableArrayList(STEP_LIST);
+//                mStepId = savedInstanceState.getInt(STEP_ID, 0);
+//
+//                Log.v(TAG, "step_id from savedInstanceState --> " + Integer.toString(mStepId));
+//            } else {
+//                //mStepList = getActivity().getIntent().getParcelableArrayListExtra("stepList");
+//                //mStepId = getActivity().getIntent().getExtras().getInt("stepId");
+//
+//                if (getArguments() != null) {
+//                    mStepList = getArguments().getParcelableArrayList("stepList");
+//                    mStepId = getArguments().getInt("stepID");
+//                }
+//
+//                Log.v(TAG, "step_id first --> " + Integer.toString(mStepId));
+//            }
+//
+//            String videoUrl = mStepList.get(mStepId).getVideoURL();
+//
+//            //mPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.player_view);
+//            if (!videoUrl.isEmpty() && videoUrl != null) {
+//                initializePlayer(Uri.parse(mStepList.get(mStepId).getVideoURL()));
+//            }
+//        }
     }
 
     private void releasePlayer() {

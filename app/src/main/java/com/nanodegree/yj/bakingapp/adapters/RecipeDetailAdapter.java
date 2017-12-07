@@ -171,15 +171,6 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
-//    @Override
-//    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-//        com.nanodegree.yj.bakingapp.Step step = stepArrayList.get(position);
-//        if (position == 0)
-//            holder.mDetailTextview.setText("Recipe Ingredients");
-//        else
-//            holder.mDetailTextview.setText(stepArrayList.get(position).getShortDescription());
-//    }
-
     @Override
     public int getItemCount() {
         return ingredientArrayList.size() + stepArrayList.size() + 2;

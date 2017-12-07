@@ -3,6 +3,7 @@ package com.nanodegree.yj.bakingapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -30,12 +31,15 @@ public class MainActivityFragment extends Fragment implements RecipeAdapter.Reci
     private static final String TAG = MainActivityFragment.class.getSimpleName();
 
     private RecyclerView mRecyclerView;
-    //private MyAdapter mRecipeApdapter;
     private RecipeAdapter mRecipeApdapter;
-    //private ArrayList<com.nanodegree.yj.bakingapp.MyData> myDataset;
 
     public MainActivityFragment() {
 
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
     }
 
     @Override
@@ -47,11 +51,20 @@ public class MainActivityFragment extends Fragment implements RecipeAdapter.Reci
         mRecyclerView = (RecyclerView)  rootView.findViewById(R.id.recyclerview_recipe);
         //mErrorMessageDisplay = (TextView) findViewById(R.id.tv_error_message_display);
 
+//        if (MainActivity.isTablet()) {
+//            GridLayoutManager layoutManager = new GridLayoutManager(rootView.getContext(), 2);
+//            mRecyclerView.setLayoutManager(layoutManager);
+//
+//        } else {
+//            LinearLayoutManager layoutManager = new LinearLayoutManager(rootView.getContext());
+//            mRecyclerView.setLayoutManager(layoutManager);
+//        }
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(rootView.getContext());
+        mRecyclerView.setLayoutManager(layoutManager);
+
         //mRecyclerView.setLayoutManager(layoutManager);
 
-        //GridLayoutManager layoutManager = new GridLayoutManager(rootView.getContext(), 2);
-        mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
         //mRecipeApdapter = new MyAdapter();
         //Context context = getActivity().getApplicationContext();
@@ -62,6 +75,7 @@ public class MainActivityFragment extends Fragment implements RecipeAdapter.Reci
 
         return rootView;
     }
+
 
     private void showRecipeList() {
 
