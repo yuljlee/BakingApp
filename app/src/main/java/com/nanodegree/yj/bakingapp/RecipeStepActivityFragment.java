@@ -105,7 +105,7 @@ public class RecipeStepActivityFragment extends Fragment implements Button.OnCli
                     initializePlayer(Uri.parse(mStepList.get(mStepId).getVideoURL()));
                 }
             }
-        } else { // table landscape
+        } else { // tablet landscape
             if (savedInstanceState != null) {
                 mStepList = savedInstanceState.getParcelableArrayList(STEP_LIST);
                 mStepId = savedInstanceState.getInt(STEP_ID, 0);
@@ -124,6 +124,8 @@ public class RecipeStepActivityFragment extends Fragment implements Button.OnCli
             }
 
             String videoUrl = mStepList.get(mStepId).getVideoURL();
+            mDescription = (TextView) rootView.findViewById(R.id.description_textview);
+            showRecipe(mStepId);
 
             //mPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.player_view);
             if (!videoUrl.isEmpty() && videoUrl != null) {

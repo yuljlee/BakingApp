@@ -10,13 +10,14 @@
         android:paddingTop="@dimen/text_margin"
         android:paddingLeft="@dimen/text_margin"
         android:paddingBottom="8dp"
-
-        android:layout_gravity="center_vertical"
+        android:gravity="center_horizontal"
         android:textSize="24dp"
         android:textStyle="bold"
         android:typeface="serif"
         android:text="Recipe Ingredients"
-        android:id="@+id/ingredient_header_textview"/>
+        android:id="@+id/ingredient_header_textview"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="#ffffff"/>
 
 </LinearLayout>
 <!--<?xml version="1.0" encoding="utf-8"?>-->
