@@ -2,7 +2,9 @@ package com.nanodegree.yj.bakingapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.nanodegree.yj.bakingapp.adapters.RecipeAdapter;
 import com.nanodegree.yj.bakingapp.utilities.JsonUtils;
 import com.nanodegree.yj.bakingapp.utilities.NetworkUtils;
@@ -30,6 +33,7 @@ public class MainActivityFragment extends Fragment implements RecipeAdapter.Reci
 
     private static final String TAG = MainActivityFragment.class.getSimpleName();
 
+    public static final String SHARED_PREFS_KEY = "SHARED_PREFS_KEY";
     private RecyclerView mRecyclerView;
     private RecipeAdapter mRecipeApdapter;
 
@@ -76,7 +80,6 @@ public class MainActivityFragment extends Fragment implements RecipeAdapter.Reci
         return rootView;
     }
 
-
     private void showRecipeList() {
 
         new RecipeTask().execute();
@@ -86,15 +89,27 @@ public class MainActivityFragment extends Fragment implements RecipeAdapter.Reci
     @Override
     public void onClick(com.nanodegree.yj.bakingapp.Recipe recipe) {
         Context context = getActivity();
-        //Toast.makeText(context, "onClicked ---> ", Toast.LENGTH_LONG).show();
-        Intent intentToStartDetailActivity = new Intent(context, RecipeDetailActivity.class);
+        Intent intent = new Intent(context, RecipeDetailActivity.class);
 
-        //Bundle bundle = new Bundle();
-        //bundle.putParcelable("recipe", recipe);
-        intentToStartDetailActivity.putExtra("recipe", recipe);
+        intent.putExtra("recipe", recipe);
         Log.v(TAG, "recipe onClick --> " + recipe.getName());
 
-        startActivity(intentToStartDetailActivity);
+        startActivity(intent);
+
+        Gson gson = new Gson();
+        String json = gson.toJson(recipe.getIngredients());
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(SHARED_PREFS_KEY, json).commit();
+
+        broadcastIntent();
+    }
+
+    private void broadcastIntent() {
+        Intent intent = new Intent(getActivity(), BakingAppWidgetProvider.class);
+        intent.setAction("android.appwidget.action.APPWIDGET_UPDATE\"");
+        getActivity().sendBroadcast(intent);
     }
 
     public class RecipeTask extends AsyncTask<String, Void, ArrayList<com.nanodegree.yj.bakingapp.Recipe>> {

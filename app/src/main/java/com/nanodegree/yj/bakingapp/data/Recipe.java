@@ -13,8 +13,8 @@ public class Recipe implements Parcelable {
 
     private String recipeId;
     private String name;
-    private ArrayList<Ingredient> ingredients;
-    private ArrayList<Step> steps;
+    private ArrayList<com.nanodegree.yj.bakingapp.Ingredient> ingredients;
+    private ArrayList<com.nanodegree.yj.bakingapp.Step> steps;
     private String servings;
     private String image;
 
@@ -22,14 +22,14 @@ public class Recipe implements Parcelable {
         recipeId = in.readString();
         name = in.readString();
         if (in.readByte() == 0x01) {
-            ingredients = new ArrayList<Ingredient>();
-            in.readList(ingredients, Ingredient.class.getClassLoader());
+            ingredients = new ArrayList<com.nanodegree.yj.bakingapp.Ingredient>();
+            in.readList(ingredients, com.nanodegree.yj.bakingapp.Ingredient.class.getClassLoader());
         } else {
             ingredients = null;
         }
         if (in.readByte() == 0x01) {
-            steps = new ArrayList<Step>();
-            in.readList(steps, Step.class.getClassLoader());
+            steps = new ArrayList<com.nanodegree.yj.bakingapp.Step>();
+            in.readList(steps, com.nanodegree.yj.bakingapp.Step.class.getClassLoader());
         } else {
             steps = null;
         }
@@ -39,7 +39,7 @@ public class Recipe implements Parcelable {
         image = in.readString();
     }
 
-    public Recipe(String recipeId, String name, ArrayList<Ingredient> ingredients, ArrayList<Step> steps, String servings, String image) {
+    public Recipe(String recipeId, String name, ArrayList<com.nanodegree.yj.bakingapp.Ingredient> ingredients, ArrayList<com.nanodegree.yj.bakingapp.Step> steps, String servings, String image) {
         this.recipeId = recipeId;
         this.name = name;
         this.ingredients = ingredients;
@@ -56,11 +56,11 @@ public class Recipe implements Parcelable {
         return name;
     }
 
-    public ArrayList<Ingredient> getIngredients() {
+    public ArrayList<com.nanodegree.yj.bakingapp.Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public ArrayList<Step> getSteps() {
+    public ArrayList<com.nanodegree.yj.bakingapp.Step> getSteps() {
         return steps;
     }
 
