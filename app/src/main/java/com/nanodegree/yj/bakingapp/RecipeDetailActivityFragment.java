@@ -46,12 +46,7 @@ public class RecipeDetailActivityFragment extends Fragment implements RecipeDeta
 
         View rootView = inflater.inflate(R.layout.fragment_recipe_detail, container, false);
 
-        //mRecipe = getActivity().getIntent().getParcelableExtra("recipe");
-
-        //Recipe recipe = (Recipe) bundle.getParcelable("recipe");
-
         mRecyclerView = (RecyclerView)  rootView.findViewById(R.id.recyclerview_recipe_detail);
-        //mErrorMessageDisplay = (TextView) findViewById(R.id.tv_error_message_display);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(rootView.getContext());
         mRecyclerView.setLayoutManager(layoutManager);
@@ -62,7 +57,7 @@ public class RecipeDetailActivityFragment extends Fragment implements RecipeDeta
         Bundle bundle = getActivity().getIntent().getExtras();
         com.nanodegree.yj.bakingapp.Recipe recipe = (com.nanodegree.yj.bakingapp.Recipe) bundle.getParcelable("recipe");
         // recipe name
-        //getActivity().setTitle(recipe.getName());
+        getActivity().setTitle(recipe.getName());
 
         mStepArrayList = new ArrayList<com.nanodegree.yj.bakingapp.Step>();
         mStepArrayList = recipe.getSteps();
@@ -80,9 +75,7 @@ public class RecipeDetailActivityFragment extends Fragment implements RecipeDeta
 
     @Override
     public void onClick(int stepId) {
-        //Toast.makeText(getActivity(), "show me", Toast.LENGTH_LONG).show();
 
-        //Context context = getActivity();
         if (getActivity().findViewById(R.id.step_linearlayout) == null) { // phone mode
             //Toast.makeText(context, "onClicked ---> ", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getActivity(), RecipeStepActivity.class);
@@ -102,6 +95,5 @@ public class RecipeDetailActivityFragment extends Fragment implements RecipeDeta
                     .replace(R.id.step_container, fragment)
                     .commit();
         }
-
     }
 }

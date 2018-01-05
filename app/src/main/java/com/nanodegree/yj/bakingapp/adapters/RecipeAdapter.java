@@ -41,7 +41,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
 
         public RecipeAdapterViewHolder(View view) {
             super(view);
-            //mMovieTextView = (TextView) view.findViewById(R.id.tv_movie_data);
             mRecipeName = (TextView) view.findViewById((R.id.textview));
 
             view.setOnClickListener(this);
@@ -72,7 +71,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
     public void onBindViewHolder(RecipeAdapterViewHolder holder, int position) {
         Recipe recipe = mRecipeArrayList.get(position);
         holder.mRecipeName.setText((CharSequence) recipe.getName());
-        //Log.v(TAG, "Built MOVIE ID URI --> " + movie.getPosterUrl());
     }
 
     @Override

@@ -30,18 +30,12 @@ public class RecipeRemoteViewsService extends RemoteViewsService {
 
     class RecipeRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
-        //private static final String TAG = RecipeRemoteViewsFactory.class.getSimpleName();
-
         Context mContext;
         com.nanodegree.yj.bakingapp.Recipe mRecipe;
         ArrayList<com.nanodegree.yj.bakingapp.Ingredient> mIngredient;
 
         public RecipeRemoteViewsFactory(Context context) {
             mContext = context;
-            //mRecipe = new com.nanodegree.yj.bakingapp.Recipe();
-
-            //mIngredient = mRecipe.getIngredients();
-
             Log.v(TAG, "Factory Started...");
         }
 

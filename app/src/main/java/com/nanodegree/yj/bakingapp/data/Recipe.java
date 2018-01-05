@@ -33,8 +33,7 @@ public class Recipe implements Parcelable {
         } else {
             steps = null;
         }
-        //ingredients = in.readArrayList(Ingredient.class.getClassLoader());
-        //steps = in.readArrayList(Step.class.getClassLoader());
+
         servings = in.readString();
         image = in.readString();
     }

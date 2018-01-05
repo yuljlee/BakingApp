@@ -76,7 +76,7 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         public ViewHolderStepList(View view) {
             super(view);
-            //mStepListTextview = (TextView) view.findViewById(R.id.step_list_textview);
+
             mStepListTextview = (TextView) view.findViewById(R.id.recipe_detail_textview);
             view.setOnClickListener(this);
         }
@@ -174,7 +174,6 @@ public class RecipeDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public int getItemCount() {
         return ingredientArrayList.size() + stepArrayList.size() + 2;
-        //return stepArrayList.size() + 1;
     }
 
     public void setStep(ArrayList<Step> step) {

@@ -55,15 +55,6 @@ public class MainActivityFragment extends Fragment implements RecipeAdapter.Reci
         mRecyclerView = (RecyclerView)  rootView.findViewById(R.id.recyclerview_recipe);
         //mErrorMessageDisplay = (TextView) findViewById(R.id.tv_error_message_display);
 
-//        if (MainActivity.isTablet()) {
-//            GridLayoutManager layoutManager = new GridLayoutManager(rootView.getContext(), 2);
-//            mRecyclerView.setLayoutManager(layoutManager);
-//
-//        } else {
-//            LinearLayoutManager layoutManager = new LinearLayoutManager(rootView.getContext());
-//            mRecyclerView.setLayoutManager(layoutManager);
-//        }
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(rootView.getContext());
         mRecyclerView.setLayoutManager(layoutManager);
 
@@ -116,10 +107,6 @@ public class MainActivityFragment extends Fragment implements RecipeAdapter.Reci
 
         @Override
         protected ArrayList<com.nanodegree.yj.bakingapp.Recipe> doInBackground(String... urls) {
-//            Log.v(TAG, "inside doIn: " + urls.toString());
-//            if (urls.length == 0) {
-//                return null;
-//            }
 
             URL recipeRequestUrl = NetworkUtils.buildUrl();
             Log.v(TAG, "url: " + recipeRequestUrl);

@@ -20,13 +20,13 @@ public class BakingAppWidgetProvider extends AppWidgetProvider {
         Intent intent = new Intent(context, RecipeDetailActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
-        CharSequence widgetText = context.getString(R.string.appwidget_text);
+        //CharSequence widgetText = context.getString(R.string.appwidget_text);
         // Construct the RemoteViews object
         //RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.baking_app_widget_provider);
         //views.setTextViewText(R.id.appwidget_text, widgetText);
         Intent listIntent = new Intent(context, RecipeRemoteViewsService.class);
         listIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-        listIntent.putExtra("Random", Math.random() * 1000); // Add a random integer to stop the Intent being ignored.  This is needed for some API levels due to intent caching
+        listIntent.putExtra("Random", Math.random() * 1000);
         listIntent.setData(Uri.parse(listIntent.toUri(Intent.URI_INTENT_SCHEME)));
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_view);
@@ -34,7 +34,7 @@ public class BakingAppWidgetProvider extends AppWidgetProvider {
 
         // Widgets allow click handlers to only launch pending intents
         //views.setOnClickPendingIntent(R.id.appwidget_text, pendingIntent);
-        views.setOnClickPendingIntent(R.id.recipe_name_textview, pendingIntent);
+        //views.setOnClickPendingIntent(R.id.recipe_name_textview, pendingIntent);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);

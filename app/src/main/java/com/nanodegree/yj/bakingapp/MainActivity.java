@@ -32,26 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-//        if (findViewById(R.id.step_linearlayout) != null) {
-//            mTwoPane = true;
-//        } else {
-//            mTwoPane = false;
-//        }
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
-
-//    public static boolean isTablet() {
-//        return mTwoPane;
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -74,39 +55,4 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-//    public class RecipeTask extends AsyncTask<String, Void, ArrayList<Recipe>> {
-//
-//        @Override
-//        protected ArrayList<Recipe> doInBackground(String... url) {
-//
-//            if (url[0].isEmpty()) {
-//                return null;
-//            }
-//
-//            URL recipeRequestUrl = NetworkUtils.buildUrl(url[0]);
-//            //Log.v(TAG, "Parsed data " + weatherRequestUrl);
-//            try {
-//                // get joson format movie data from server
-//                String jsonRecipeResponse = NetworkUtils
-//                        .getResponseFromHttpUrl(recipeRequestUrl);
-//
-//                //Log.v(TAG, "Json Response - " + jsonMoiveResponse);
-//                ArrayList<Recipe> recipeStrings = JsonUtils
-//                        .getRecipeStringsFromJson(getApplicationContext(), jsonRecipeResponse);
-//
-//                return recipeStrings;
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                return null;
-//            }
-//
-//        }
-//
-//        @Override
-//        protected void onPostExecute(ArrayList<Recipe> recipes) {
-//            super.onPostExecute(recipes);
-//        }
-//    }
 }
