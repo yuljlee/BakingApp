@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.nanodegree.yj.bakingapp.R;
 import com.nanodegree.yj.bakingapp.Recipe;
+import com.squareup.picasso.Picasso;
 
 
 import java.util.ArrayList;
@@ -38,10 +39,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
     public class RecipeAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public final TextView mRecipeName;
+        public final ImageView mRecipeImage;
 
         public RecipeAdapterViewHolder(View view) {
             super(view);
             mRecipeName = (TextView) view.findViewById((R.id.textview));
+            mRecipeImage = (ImageView) view.findViewById(R.id.recipe_imageview); // add image view
 
             view.setOnClickListener(this);
         }
@@ -71,6 +74,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeAdap
     public void onBindViewHolder(RecipeAdapterViewHolder holder, int position) {
         Recipe recipe = mRecipeArrayList.get(position);
         holder.mRecipeName.setText((CharSequence) recipe.getName());
+
+        Context context = holder.mRecipeImage.getContext();
+        if (!recipe.getImage().isEmpty()) {
+            Picasso.with(context)
+                    .load(recipe.getImage())
+                    .into(holder.mRecipeImage);
+        }
     }
 
     @Override
