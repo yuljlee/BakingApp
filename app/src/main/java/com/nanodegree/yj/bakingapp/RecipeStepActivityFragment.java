@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
@@ -47,10 +48,12 @@ public class RecipeStepActivityFragment extends Fragment implements Button.OnCli
     private SimpleExoPlayerView mPlayerView;
     private SimpleExoPlayer mExoPlayer;
     private int mStepId;
+    private long mPosition;
     private Button mPrevButton;
     private Button mNextButton;
     private static final String STEP_LIST = "step_list";
     private static final String STEP_ID = "step_id";
+    private static final String SELECTED_POSITION =  "selected_position";
 
     public RecipeStepActivityFragment() {
         super();
@@ -69,6 +72,7 @@ public class RecipeStepActivityFragment extends Fragment implements Button.OnCli
             if (savedInstanceState != null) {
                 mStepList = savedInstanceState.getParcelableArrayList(STEP_LIST);
                 mStepId = savedInstanceState.getInt(STEP_ID, 0);
+                mPosition = savedInstanceState.getLong(SELECTED_POSITION, C.TIME_UNSET);
 
                 Log.v(TAG, "step_id from savedInstanceState --> " + Integer.toString(mStepId));
             } else {
@@ -146,6 +150,7 @@ public class RecipeStepActivityFragment extends Fragment implements Button.OnCli
             MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(
                     getContext(), userAgent), new DefaultExtractorsFactory(), null, null);
 
+            if (mPosition != C.TIME_UNSET) mExoPlayer.seekTo(mPosition);
             mExoPlayer.prepare(mediaSource);
             mExoPlayer.setPlayWhenReady(true);
         }
@@ -155,35 +160,11 @@ public class RecipeStepActivityFragment extends Fragment implements Button.OnCli
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-//        if (getActivity().findViewById(R.id.step_linearlayout) != null) { // table landscape
-//            if (savedInstanceState != null) {
-//                mStepList = savedInstanceState.getParcelableArrayList(STEP_LIST);
-//                mStepId = savedInstanceState.getInt(STEP_ID, 0);
-//
-//                Log.v(TAG, "step_id from savedInstanceState --> " + Integer.toString(mStepId));
-//            } else {
-//                //mStepList = getActivity().getIntent().getParcelableArrayListExtra("stepList");
-//                //mStepId = getActivity().getIntent().getExtras().getInt("stepId");
-//
-//                if (getArguments() != null) {
-//                    mStepList = getArguments().getParcelableArrayList("stepList");
-//                    mStepId = getArguments().getInt("stepID");
-//                }
-//
-//                Log.v(TAG, "step_id first --> " + Integer.toString(mStepId));
-//            }
-//
-//            String videoUrl = mStepList.get(mStepId).getVideoURL();
-//
-//            //mPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.player_view);
-//            if (!videoUrl.isEmpty() && videoUrl != null) {
-//                initializePlayer(Uri.parse(mStepList.get(mStepId).getVideoURL()));
-//            }
-//        }
     }
 
     private void releasePlayer() {
         if (mExoPlayer != null) {
+            mPosition = mExoPlayer.getCurrentPosition(); // save current position
             mExoPlayer.stop();
             mExoPlayer.release();
             mExoPlayer = null;
@@ -196,6 +177,8 @@ public class RecipeStepActivityFragment extends Fragment implements Button.OnCli
 
         outState.putParcelableArrayList(STEP_LIST, mStepList);
         outState.putInt(STEP_ID, mStepId);
+        outState.putLong(SELECTED_POSITION, mPosition); // save player's position
+
         Log.v(TAG, "step_id save on onSaveInstanceState --> " + Integer.toString(mStepId));
     }
 
@@ -246,7 +229,13 @@ public class RecipeStepActivityFragment extends Fragment implements Button.OnCli
                 break;
         }
 
-        releasePlayer();
+        if (mExoPlayer != null) {
+            mPosition = C.TIME_UNSET;
+            mExoPlayer.stop();
+            mExoPlayer.release();
+            mExoPlayer = null;
+        }
+
         initializePlayer(Uri.parse(mStepList.get(mStepId).getVideoURL()));
         //showRecipeVideo(mStepId);
         showRecipe(mStepId);

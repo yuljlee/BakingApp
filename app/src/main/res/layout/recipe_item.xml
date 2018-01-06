@@ -20,11 +20,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <!--<ImageView-->
-                <!--android:scaleType="centerCrop"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:id="@+id/image"/>-->
+            <ImageView
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/recipe_imageview"/>
             <TextView
                 android:id="@+id/textview"
                 android:layout_width="match_parent"
