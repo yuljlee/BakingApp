@@ -1,5 +1,6 @@
 package com.nanodegree.yj.bakingapp;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,7 @@ import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -45,6 +48,7 @@ public class RecipeStepActivityFragment extends Fragment implements Button.OnCli
 
     private ArrayList<com.nanodegree.yj.bakingapp.Step> mStepList;
     private TextView mDescription;
+    private ImageView mStepThumbnail;
     private SimpleExoPlayerView mPlayerView;
     private SimpleExoPlayer mExoPlayer;
     private int mStepId;
@@ -87,6 +91,7 @@ public class RecipeStepActivityFragment extends Fragment implements Button.OnCli
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 mDescription = (TextView) rootView.findViewById(R.id.description_textview);
                 //mPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.player_view);
+                mStepThumbnail = (ImageView) rootView.findViewById(R.id.step_thumbnail);
                 mPrevButton = (Button) rootView.findViewById(R.id.prev_button);
                 mNextButton = (Button) rootView.findViewById(R.id.next_button);
 
@@ -113,6 +118,7 @@ public class RecipeStepActivityFragment extends Fragment implements Button.OnCli
             if (savedInstanceState != null) {
                 mStepList = savedInstanceState.getParcelableArrayList(STEP_LIST);
                 mStepId = savedInstanceState.getInt(STEP_ID, 0);
+                mPosition = savedInstanceState.getLong(SELECTED_POSITION, C.TIME_UNSET);
 
                 Log.v(TAG, "step_id from savedInstanceState --> " + Integer.toString(mStepId));
             } else {
@@ -129,6 +135,7 @@ public class RecipeStepActivityFragment extends Fragment implements Button.OnCli
 
             String videoUrl = mStepList.get(mStepId).getVideoURL();
             mDescription = (TextView) rootView.findViewById(R.id.description_textview);
+            mStepThumbnail = (ImageView) rootView.findViewById(R.id.step_thumbnail);
             showRecipe(mStepId);
 
             //mPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.player_view);
@@ -188,8 +195,22 @@ public class RecipeStepActivityFragment extends Fragment implements Button.OnCli
         releasePlayer();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initializePlayer(Uri.parse(mStepList.get(mStepId).getVideoURL()));
+    }
+
     private void showRecipe(int index) {
         mDescription.setText(mStepList.get(index).getDescription());
+
+        if (!mStepList.get(index).getThumbnailURL().isEmpty()) {
+            Context context = mStepThumbnail.getContext();
+
+            Picasso.with(context)
+                     .load(mStepList.get(index).getThumbnailURL())
+                     .into(mStepThumbnail);
+        }
     }
 
     private void showRecipeVideo(int index) {

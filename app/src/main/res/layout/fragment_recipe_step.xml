@@ -23,6 +23,12 @@
         android:textSize="20sp"
         android:layout_weight="5"/>
 
+    <ImageView
+        android:scaleType="centerCrop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/step_thumbnail"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -34,7 +40,6 @@
             android:id="@+id/prev_button"
             android:layout_width="160dp"
             android:layout_height="60dp"
-
             android:layout_margin="8dp"
 
             android:text="Prev"/>
@@ -46,7 +51,6 @@
             android:id="@+id/next_button"
             android:layout_width="160dp"
             android:layout_height="60dp"
-
             android:layout_margin="8dp"
 
             android:text="Next"/>

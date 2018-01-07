@@ -46,7 +46,7 @@ public class RecipeDetailActivityFragment extends Fragment implements RecipeDeta
 
         View rootView = inflater.inflate(R.layout.fragment_recipe_detail, container, false);
 
-        mRecyclerView = (RecyclerView)  rootView.findViewById(R.id.recyclerview_recipe_detail);
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview_recipe_detail);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(rootView.getContext());
         mRecyclerView.setLayoutManager(layoutManager);
