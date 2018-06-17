@@ -33,6 +33,7 @@ import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
+import com.nanodegree.yj.bakingapp.data.Step;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class RecipeStepActivityFragment extends Fragment implements Button.OnCli
 
     private static final String TAG = RecipeStepActivityFragment.class.getSimpleName();
 
-    private ArrayList<com.nanodegree.yj.bakingapp.Step> mStepList;
+    private ArrayList<Step> mStepList;
     private TextView mDescription;
     private ImageView mStepThumbnail;
     private SimpleExoPlayerView mPlayerView;

@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nanodegree.yj.bakingapp.adapters.RecipeDetailAdapter;
+import com.nanodegree.yj.bakingapp.data.Recipe;
+import com.nanodegree.yj.bakingapp.data.Step;
 
 import java.util.ArrayList;
 
@@ -30,13 +32,13 @@ public class RecipeDetailActivityFragment extends Fragment implements RecipeDeta
 
     private RecyclerView mRecyclerView;
     private RecipeDetailAdapter mRecipeDetailAdapter;
-    private com.nanodegree.yj.bakingapp.Recipe mRecipe;
-    private ArrayList<com.nanodegree.yj.bakingapp.Step> mStepArrayList;
+    private Recipe mRecipe;
+    private ArrayList<Step> mStepArrayList;
 
     public RecipeDetailActivityFragment() {
     }
 
-    public ArrayList<com.nanodegree.yj.bakingapp.Step> getStepList() {
+    public ArrayList<Step> getStepList() {
         return mStepArrayList;
     }
 
@@ -55,11 +57,11 @@ public class RecipeDetailActivityFragment extends Fragment implements RecipeDeta
         mRecyclerView.setAdapter(mRecipeDetailAdapter);
 
         Bundle bundle = getActivity().getIntent().getExtras();
-        com.nanodegree.yj.bakingapp.Recipe recipe = (com.nanodegree.yj.bakingapp.Recipe) bundle.getParcelable("recipe");
+        Recipe recipe = (Recipe) bundle.getParcelable("recipe");
         // recipe name
         getActivity().setTitle(recipe.getName());
 
-        mStepArrayList = new ArrayList<com.nanodegree.yj.bakingapp.Step>();
+        mStepArrayList = new ArrayList<Step>();
         mStepArrayList = recipe.getSteps();
 
         Log.v(TAG, "mRecipe --> " + recipe.getName());

@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.nanodegree.yj.bakingapp.adapters.RecipeDetailAdapter;
+import com.nanodegree.yj.bakingapp.data.Recipe;
+import com.nanodegree.yj.bakingapp.data.Step;
 
 import java.util.ArrayList;
 
@@ -31,9 +33,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
             //mTwoPane = true;
 
             Bundle bundle = getIntent().getExtras();
-            com.nanodegree.yj.bakingapp.Recipe recipe = (com.nanodegree.yj.bakingapp.Recipe) bundle.getParcelable("recipe");
+            Recipe recipe = (Recipe) bundle.getParcelable("recipe");
 
-            ArrayList<com.nanodegree.yj.bakingapp.Step> stepArrayList = new ArrayList<com.nanodegree.yj.bakingapp.Step>();
+            ArrayList<Step> stepArrayList = new ArrayList<Step>();
             stepArrayList = recipe.getSteps();
 
             if (savedInstanceState == null) {

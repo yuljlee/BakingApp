@@ -10,6 +10,8 @@ import android.widget.RemoteViewsService;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.nanodegree.yj.bakingapp.data.Ingredient;
+import com.nanodegree.yj.bakingapp.data.Recipe;
 
 import java.util.ArrayList;
 
@@ -31,8 +33,8 @@ public class RecipeRemoteViewsService extends RemoteViewsService {
     class RecipeRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
         Context mContext;
-        com.nanodegree.yj.bakingapp.Recipe mRecipe;
-        ArrayList<com.nanodegree.yj.bakingapp.Ingredient> mIngredient;
+        Recipe mRecipe;
+        ArrayList<Ingredient> mIngredient;
 
         public RecipeRemoteViewsFactory(Context context) {
             mContext = context;
@@ -50,7 +52,7 @@ public class RecipeRemoteViewsService extends RemoteViewsService {
             String json = preferences.getString(MainActivityFragment.SHARED_PREFS_KEY, "");
             if (!json.equals("")) {
                 Gson gson = new Gson();
-                mIngredient = gson.fromJson(json, new TypeToken<ArrayList<com.nanodegree.yj.bakingapp.Ingredient>>() {
+                mIngredient = gson.fromJson(json, new TypeToken<ArrayList<Ingredient>>() {
                 }.getType());
             }
         }

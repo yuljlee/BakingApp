@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nanodegree.yj.bakingapp.adapters.RecipeAdapter;
+import com.nanodegree.yj.bakingapp.data.Recipe;
 import com.nanodegree.yj.bakingapp.utilities.JsonUtils;
 import com.nanodegree.yj.bakingapp.utilities.NetworkUtils;
 
@@ -78,7 +79,7 @@ public class MainActivityFragment extends Fragment implements RecipeAdapter.Reci
     }
 
     @Override
-    public void onClick(com.nanodegree.yj.bakingapp.Recipe recipe) {
+    public void onClick(Recipe recipe) {
         Context context = getActivity();
         Intent intent = new Intent(context, RecipeDetailActivity.class);
 
@@ -103,10 +104,10 @@ public class MainActivityFragment extends Fragment implements RecipeAdapter.Reci
         getActivity().sendBroadcast(intent);
     }
 
-    public class RecipeTask extends AsyncTask<String, Void, ArrayList<com.nanodegree.yj.bakingapp.Recipe>> {
+    public class RecipeTask extends AsyncTask<String, Void, ArrayList<Recipe>> {
 
         @Override
-        protected ArrayList<com.nanodegree.yj.bakingapp.Recipe> doInBackground(String... urls) {
+        protected ArrayList<Recipe> doInBackground(String... urls) {
 
             URL recipeRequestUrl = NetworkUtils.buildUrl();
             Log.v(TAG, "url: " + recipeRequestUrl);
@@ -116,7 +117,7 @@ public class MainActivityFragment extends Fragment implements RecipeAdapter.Reci
                         .getResponseFromHttpUrl(recipeRequestUrl);
 
                 Log.v(TAG, "Json Response - " + jsonRecipeResponse);
-                ArrayList<com.nanodegree.yj.bakingapp.Recipe> recipeStrings = JsonUtils
+                ArrayList<Recipe> recipeStrings = JsonUtils
                         .getRecipeStringsFromJson(getActivity(), jsonRecipeResponse);
 
                 return recipeStrings;
@@ -128,7 +129,7 @@ public class MainActivityFragment extends Fragment implements RecipeAdapter.Reci
         }
 
         @Override
-        protected void onPostExecute(ArrayList<com.nanodegree.yj.bakingapp.Recipe> recipes) {
+        protected void onPostExecute(ArrayList<Recipe> recipes) {
             super.onPostExecute(recipes);
             mRecipeApdapter.setRecipeData(recipes);
         }

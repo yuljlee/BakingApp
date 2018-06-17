@@ -3,7 +3,7 @@ package com.nanodegree.yj.bakingapp.adapters;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import com.nanodegree.yj.bakingapp.Ingredient;
+import com.nanodegree.yj.bakingapp.data.Ingredient;
 
 import java.util.ArrayList;
 

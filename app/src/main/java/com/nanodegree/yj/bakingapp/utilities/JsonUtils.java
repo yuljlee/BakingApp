@@ -3,9 +3,9 @@ package com.nanodegree.yj.bakingapp.utilities;
 import android.content.Context;
 import android.util.Log;
 
-import com.nanodegree.yj.bakingapp.Ingredient;
-import com.nanodegree.yj.bakingapp.Recipe;
-import com.nanodegree.yj.bakingapp.Step;
+import com.nanodegree.yj.bakingapp.data.Ingredient;
+import com.nanodegree.yj.bakingapp.data.Recipe;
+import com.nanodegree.yj.bakingapp.data.Step;
 
 import org.json.JSONArray;
 import org.json.JSONException;

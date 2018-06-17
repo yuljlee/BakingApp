@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nanodegree.yj.bakingapp.R;
-import com.nanodegree.yj.bakingapp.Recipe;
+import com.nanodegree.yj.bakingapp.data.Recipe;
 import com.squareup.picasso.Picasso;
 
 

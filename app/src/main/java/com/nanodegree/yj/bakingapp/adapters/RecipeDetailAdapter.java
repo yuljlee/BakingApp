@@ -8,10 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.nanodegree.yj.bakingapp.Ingredient;
+import com.nanodegree.yj.bakingapp.data.Ingredient;
 import com.nanodegree.yj.bakingapp.R;
-import com.nanodegree.yj.bakingapp.Recipe;
-import com.nanodegree.yj.bakingapp.Step;
+import com.nanodegree.yj.bakingapp.data.Recipe;
+import com.nanodegree.yj.bakingapp.data.Step;
 
 import java.util.ArrayList;
 
