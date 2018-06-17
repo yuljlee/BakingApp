@@ -6,4 +6,6 @@
     <string name="title_activity_recipe_step">RecipeStepActivity</string>
     <string name="appwidget_text">BakinApp Wedget</string>
     <string name="add_widget">Add widget</string>
+    <string name="previous_button">Previous Button</string>
+    <string name="next_button">Next Button</string>
 </resources>

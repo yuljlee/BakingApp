@@ -1,4 +1,4 @@
-package com.nanodegree.yj.bakingapp;
+package com.nanodegree.yj.bakingapp.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -13,8 +13,8 @@ public class Recipe implements Parcelable {
 
     private String recipeId;
     private String name;
-    private ArrayList<com.nanodegree.yj.bakingapp.Ingredient> ingredients;
-    private ArrayList<com.nanodegree.yj.bakingapp.Step> steps;
+    private ArrayList<Ingredient> ingredients;
+    private ArrayList<Step> steps;
     private String servings;
     private String image;
 
@@ -22,14 +22,14 @@ public class Recipe implements Parcelable {
         recipeId = in.readString();
         name = in.readString();
         if (in.readByte() == 0x01) {
-            ingredients = new ArrayList<com.nanodegree.yj.bakingapp.Ingredient>();
-            in.readList(ingredients, com.nanodegree.yj.bakingapp.Ingredient.class.getClassLoader());
+            ingredients = new ArrayList<Ingredient>();
+            in.readList(ingredients, Ingredient.class.getClassLoader());
         } else {
             ingredients = null;
         }
         if (in.readByte() == 0x01) {
-            steps = new ArrayList<com.nanodegree.yj.bakingapp.Step>();
-            in.readList(steps, com.nanodegree.yj.bakingapp.Step.class.getClassLoader());
+            steps = new ArrayList<Step>();
+            in.readList(steps, Step.class.getClassLoader());
         } else {
             steps = null;
         }
@@ -38,7 +38,7 @@ public class Recipe implements Parcelable {
         image = in.readString();
     }
 
-    public Recipe(String recipeId, String name, ArrayList<com.nanodegree.yj.bakingapp.Ingredient> ingredients, ArrayList<com.nanodegree.yj.bakingapp.Step> steps, String servings, String image) {
+    public Recipe(String recipeId, String name, ArrayList<Ingredient> ingredients, ArrayList<Step> steps, String servings, String image) {
         this.recipeId = recipeId;
         this.name = name;
         this.ingredients = ingredients;
@@ -55,11 +55,11 @@ public class Recipe implements Parcelable {
         return name;
     }
 
-    public ArrayList<com.nanodegree.yj.bakingapp.Ingredient> getIngredients() {
+    public ArrayList<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public ArrayList<com.nanodegree.yj.bakingapp.Step> getSteps() {
+    public ArrayList<Step> getSteps() {
         return steps;
     }
 

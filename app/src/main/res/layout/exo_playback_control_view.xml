@@ -32,11 +32,12 @@
             <!--style="@style/ExoMediaButton.Previous"/>-->
 
         <ImageButton android:id="@id/exo_play"
-            style="@style/ExoMediaButton.Play"/>
+            style="@style/ExoMediaButton.Play"
+            android:contentDescription="@string/previous_button"/>
 
         <ImageButton android:id="@id/exo_pause"
-            style="@style/ExoMediaButton.Pause"/>
-
+            style="@style/ExoMediaButton.Pause"
+            android:contentDescription="@string/next_button"/>
     </LinearLayout>
 
     <LinearLayout

@@ -1,4 +1,4 @@
-package com.nanodegree.yj.bakingapp;
+package com.nanodegree.yj.bakingapp.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
